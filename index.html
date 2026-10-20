@@ -154,8 +154,8 @@
     .btn[disabled] { opacity: .6; cursor: wait; }
     .btn.ghost { flex: 0 0 auto; background: transparent; color: var(--muted); border: 1px solid var(--border); font-weight: 600; }
 
-    .booking-frame { min-height: 640px; border-radius: 10px; overflow: hidden; background: var(--surface-2); border: 1px dashed #333; }
-    .booking-frame iframe { width: 100%; min-height: 640px; border: 0; display: block; }
+    .booking-frame { min-height: 700px; border-radius: 10px; overflow: hidden; background: var(--surface-2); border: 1px dashed #333; }
+    .booking-frame iframe { width: 100%; height: 700px; border: 0; display: block; }
     .booking-placeholder { padding: 48px 20px; text-align: center; color: var(--muted); font-size: 15px; }
 
     footer { border-top: 1px solid #141414; padding: 28px 0 40px; text-align: center; color: #666; font-size: 13px; }
@@ -263,9 +263,11 @@
     // Webhook that receives survey answers (e.g. a Make / Zapier / CRM webhook).
     // Leave empty to skip sending.
     const LEAD_WEBHOOK_URL = "";
-    // Booking calendar embed URL (e.g. GoHighLevel / Calendly). Name, email and
-    // phone are appended as query params so the widget can prefill them.
-    const BOOKING_EMBED_URL = "";
+    // Booking calendar embed URL. Name, email and phone are appended as query
+    // params so the widget can prefill them.
+    const BOOKING_EMBED_URL = "https://scalbl-crmproper.vercel.app/book/scale-tinting-4a2951";
+    // Where to send people once the calendar reports a booking.
+    const THANK_YOU_URL = "thank-you.html";
     // -------------------------------------------------------------------
 
     const STATES = ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","District of Columbia","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"];
@@ -359,6 +361,29 @@
       iframe.loading = "lazy";
       el.replaceChildren(iframe);
     }
+
+    // Calendar messages: enable parent tracking, fire the Meta Pixel "Schedule"
+    // event on booking, then forward to the thank-you page.
+    const BOOKING_ORIGIN = new URL(BOOKING_EMBED_URL).origin;
+    let redirected = false;
+    window.addEventListener("message", e => {
+      if (e.origin !== BOOKING_ORIGIN || !e.data) return;
+      const d = e.data;
+      if (d.type === "scalbl:ready") {
+        e.source.postMessage({ type: "scalbl:parent-tracking" }, BOOKING_ORIGIN);
+        return;
+      }
+      if (d.type !== "scalbl:booked" || redirected) return;
+      redirected = true;
+      if (d.metaPixelId) {
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");
+        const ids = window.fbq.instance && window.fbq.instance.pixelsByID;
+        if (!ids || !ids[d.metaPixelId]) fbq("init", d.metaPixelId);
+        fbq("trackSingle", d.metaPixelId, "Schedule", { content_name: d.calendarName }, { eventID: d.eventId });
+      }
+      // Short delay so the pixel request can go out before the page changes.
+      setTimeout(() => { location.href = THANK_YOU_URL; }, d.metaPixelId ? 1200 : 0);
+    });
 
     async function goNext() {
       const msg = validate();

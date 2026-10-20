@@ -160,6 +160,14 @@
 
     footer { border-top: 1px solid #141414; padding: 28px 0 40px; text-align: center; color: #666; font-size: 13px; }
   </style>
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");
+    fbq("init", "1108216018730203");
+    fbq("track", "PageView");
+  </script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1108216018730203&ev=PageView&noscript=1" alt=""></noscript>
+  <!-- End Meta Pixel -->
 </head>
 <body>
 
@@ -362,8 +370,11 @@
       el.replaceChildren(iframe);
     }
 
-    // Calendar messages: enable parent tracking, fire the Meta Pixel "Schedule"
-    // event on booking, then forward to the thank-you page.
+    const META_PIXEL_ID = "1108216018730203";
+
+    // Calendar messages: enable parent tracking, fire "Schedule" for any other
+    // pixel the calendar is set up with, then forward to the thank-you page
+    // (which fires "Schedule" for our pixel).
     const BOOKING_ORIGIN = new URL(BOOKING_EMBED_URL).origin;
     let redirected = false;
     window.addEventListener("message", e => {
@@ -375,14 +386,16 @@
       }
       if (d.type !== "scalbl:booked" || redirected) return;
       redirected = true;
-      if (d.metaPixelId) {
-        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");
+      const otherPixel = d.metaPixelId && d.metaPixelId !== META_PIXEL_ID;
+      if (otherPixel) {
         const ids = window.fbq.instance && window.fbq.instance.pixelsByID;
         if (!ids || !ids[d.metaPixelId]) fbq("init", d.metaPixelId);
         fbq("trackSingle", d.metaPixelId, "Schedule", { content_name: d.calendarName }, { eventID: d.eventId });
       }
       // Short delay so the pixel request can go out before the page changes.
-      setTimeout(() => { location.href = THANK_YOU_URL; }, d.metaPixelId ? 1200 : 0);
+      const target = new URL(THANK_YOU_URL, location.href);
+      if (d.eventId) target.searchParams.set("event_id", d.eventId);
+      setTimeout(() => { location.href = target.toString(); }, otherPixel ? 1200 : 0);
     });
 
     async function goNext() {
@@ -391,6 +404,7 @@
       if (steps[current].dataset.step === "contact") {
         next.disabled = true;
         await submitLead();
+        fbq("track", "Lead");
         next.disabled = false;
         loadBooking();
       }

@@ -112,6 +112,20 @@
 
     footer { border-top: 1px solid #141414; padding: 28px 0 40px; text-align: center; color: #666; font-size: 13px; }
   </style>
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");
+    fbq("init", "1108216018730203");
+    fbq("track", "PageView");
+    // Schedule: reuse the booking's event ID (passed from the landing page) so
+    // Meta can deduplicate it against the calendar's own server-side event.
+    (function () {
+      const eventId = new URLSearchParams(location.search).get("event_id");
+      fbq("track", "Schedule", {}, eventId ? { eventID: eventId } : {});
+    })();
+  </script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1108216018730203&ev=PageView&noscript=1" alt=""></noscript>
+  <!-- End Meta Pixel -->
 </head>
 <body>
 

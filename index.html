@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Launch Your Home Window Tinting Business</title>
+  <meta name="description" content="Claim a region across the United States and start getting home window tinting jobs in just a few weeks.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <script src="https://fast.wistia.com/player.js" async></script>
+  <script src="https://fast.wistia.com/embed/1imyxaot1e.js" async type="module"></script>
+  <style>
+    wistia-player[media-id='1imyxaot1e']:not(:defined) {
+      background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/1imyxaot1e/swatch');
+      display: block;
+      filter: blur(5px);
+      padding-top: 56.25%;
+    }
+  </style>
+
+  <style>
+    :root {
+      --bg: #000;
+      --surface: #0e0e0e;
+      --surface-2: #161616;
+      --border: #262626;
+      --text: #fff;
+      --muted: #a3a3a3;
+      --accent: #f5c518;
+      --accent-ink: #000;
+      --error: #ff5c5c;
+      --radius: 14px;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap { max-width: 880px; margin: 0 auto; padding: 0 16px; }
+
+    /* Hero */
+    header.hero { padding: 56px 0 32px; text-align: center; }
+    .eyebrow {
+      display: inline-block;
+      font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid #3a3200; background: #141100;
+      padding: 6px 14px; border-radius: 999px; margin-bottom: 22px;
+    }
+    h1 {
+      font-size: clamp(32px, 6.4vw, 60px);
+      line-height: 1.05; font-weight: 900; letter-spacing: -0.025em;
+      margin: 0 0 22px; text-wrap: balance;
+    }
+    h1 .hl { color: var(--accent); }
+    .sub {
+      font-size: clamp(17px, 2.4vw, 20px);
+      color: var(--muted); max-width: 680px; margin: 0 auto 14px; text-wrap: pretty;
+    }
+    .sub strong { color: var(--text); font-weight: 700; }
+
+    /* Video */
+    .video {
+      margin: 32px auto 0;
+      border-radius: var(--radius); overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 0 0 1px #000, 0 30px 80px -20px rgba(245,197,24,.18);
+      background: #050505;
+    }
+
+    /* Apply section */
+    section.apply { padding: 48px 0 80px; }
+    .apply-head { text-align: center; margin-bottom: 24px; }
+    .apply-head h2 {
+      font-size: clamp(24px, 4vw, 34px); font-weight: 800; letter-spacing: -0.02em;
+      margin: 0 0 8px; text-wrap: balance;
+    }
+    .apply-head p { color: var(--muted); margin: 0; }
+    .arrow { display: block; font-size: 28px; color: var(--accent); margin-top: 10px; }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      max-width: 640px; margin: 0 auto;
+    }
+    @media (min-width: 600px) { .card { padding: 36px 40px; } }
+
+    .progress { height: 6px; background: var(--surface-2); border-radius: 999px; overflow: hidden; margin-bottom: 10px; }
+    .progress > span { display: block; height: 100%; width: 0; background: var(--accent); transition: width .3s ease; }
+    .step-count { font-size: 13px; color: var(--muted); margin-bottom: 22px; font-weight: 500; }
+
+    .step { display: none; }
+    .step.active { display: block; animation: fade .25s ease; }
+    @keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+    .q { font-size: 21px; font-weight: 700; margin: 0 0 18px; line-height: 1.3; text-wrap: balance; }
+    .q-note { color: var(--muted); font-size: 15px; margin: -8px 0 18px; }
+
+    .options { display: grid; gap: 10px; }
+    .opt {
+      display: flex; align-items: center; gap: 12px;
+      width: 100%; text-align: left;
+      background: var(--surface-2); color: var(--text);
+      border: 1px solid var(--border); border-radius: 10px;
+      padding: 15px 16px; font: inherit; font-size: 16px; font-weight: 500;
+      cursor: pointer; transition: border-color .15s, background .15s;
+    }
+    .opt:hover { border-color: #444; }
+    .opt[aria-checked="true"] { border-color: var(--accent); background: #1a1600; }
+    .opt .dot {
+      flex: none; width: 18px; height: 18px; border-radius: 50%;
+      border: 2px solid #555; display: grid; place-items: center;
+    }
+    .opt[aria-checked="true"] .dot { border-color: var(--accent); }
+    .opt[aria-checked="true"] .dot::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+
+    label.field { display: block; margin-bottom: 14px; }
+    label.field span { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; color: #d4d4d4; }
+    input, select {
+      width: 100%;
+      background: var(--surface-2); color: var(--text);
+      border: 1px solid var(--border); border-radius: 10px;
+      padding: 14px; font: inherit; font-size: 16px;
+      appearance: none; -webkit-appearance: none;
+    }
+    select {
+      background-image: linear-gradient(45deg, transparent 50%, #888 50%), linear-gradient(135deg, #888 50%, transparent 50%);
+      background-position: calc(100% - 20px) 50%, calc(100% - 14px) 50%;
+      background-size: 6px 6px; background-repeat: no-repeat; padding-right: 40px;
+    }
+    input:focus, select:focus, .opt:focus-visible, .btn:focus-visible {
+      outline: 2px solid var(--accent); outline-offset: 2px; border-color: var(--accent);
+    }
+    .error { color: var(--error); font-size: 14px; min-height: 20px; margin-top: 10px; }
+
+    .nav { display: flex; gap: 10px; margin-top: 18px; }
+    .btn {
+      flex: 1;
+      border: 0; border-radius: 10px; cursor: pointer;
+      padding: 16px 20px; font: inherit; font-size: 17px; font-weight: 800;
+      background: var(--accent); color: var(--accent-ink);
+      transition: transform .1s, filter .15s;
+    }
+    .btn:hover { filter: brightness(1.08); }
+    .btn:active { transform: translateY(1px); }
+    .btn[disabled] { opacity: .6; cursor: wait; }
+    .btn.ghost { flex: 0 0 auto; background: transparent; color: var(--muted); border: 1px solid var(--border); font-weight: 600; }
+
+    .booking-frame { min-height: 640px; border-radius: 10px; overflow: hidden; background: var(--surface-2); border: 1px dashed #333; }
+    .booking-frame iframe { width: 100%; min-height: 640px; border: 0; display: block; }
+    .booking-placeholder { padding: 48px 20px; text-align: center; color: var(--muted); font-size: 15px; }
+
+    footer { border-top: 1px solid #141414; padding: 28px 0 40px; text-align: center; color: #666; font-size: 13px; }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Regions now available</div>
+      <h1>Launch Your Own Home Window Tinting Business <span class="hl">FAST</span></h1>
+      <p class="sub">Claim one of the regions across the United States and start getting jobs in <strong>just a few weeks</strong>.</p>
+      <p class="sub">Get jobs sent to <strong>YOU</strong> and get the whole business / assets to start making <strong>$20&ndash;40k months</strong> in your area.</p>
+
+      <div class="video">
+        <wistia-player media-id="1imyxaot1e" aspect="1.7777777777777777"></wistia-player>
+      </div>
+    </div>
+  </header>
+
+  <section class="apply" id="apply">
+    <div class="wrap">
+      <div class="apply-head">
+        <h2>Apply for your area by completing the survey below</h2>
+        <p>Takes less than 60 seconds.</p>
+        <span class="arrow" aria-hidden="true">&darr;</span>
+      </div>
+
+      <form class="card" id="survey" novalidate>
+        <div class="progress" aria-hidden="true"><span id="bar"></span></div>
+        <div class="step-count" id="count"></div>
+
+        <!-- 1. State -->
+        <div class="step" data-step="state">
+          <p class="q">What state are you located in?</p>
+          <label class="field">
+            <span>State</span>
+            <select name="state" id="state" required>
+              <option value="">Select your state&hellip;</option>
+            </select>
+          </label>
+        </div>
+
+        <!-- 2. Revenue goal -->
+        <div class="step" data-step="revenue_goal">
+          <p class="q">What is your initial monthly revenue goal?</p>
+          <div class="options" role="radiogroup" data-name="revenue_goal">
+            <button type="button" class="opt" role="radio" aria-checked="false" data-value="$10k/month"><span class="dot"></span>$10k / month</button>
+            <button type="button" class="opt" role="radio" aria-checked="false" data-value="$20k/month"><span class="dot"></span>$20k / month</button>
+            <button type="button" class="opt" role="radio" aria-checked="false" data-value="$40k/month"><span class="dot"></span>$40k / month</button>
+            <button type="button" class="opt" role="radio" aria-checked="false" data-value="$100k+/month"><span class="dot"></span>$100k+ / month</button>
+          </div>
+        </div>
+
+        <!-- 3. Business owner -->
+        <div class="step" data-step="business_status">
+          <p class="q">Are you currently a business owner, or looking to start?</p>
+          <div class="options" role="radiogroup" data-name="business_status">
+            <button type="button" class="opt" role="radio" aria-checked="false" data-value="Current business owner"><span class="dot"></span>I'm currently a business owner</button>
+            <button type="button" class="opt" role="radio" aria-checked="false" data-value="Looking to start"><span class="dot"></span>I'm looking to start my first business</button>
+          </div>
+        </div>
+
+        <!-- 4. Capital -->
+        <div class="step" data-step="capital">
+          <p class="q">The initial startup capital to launch this business is $15k. Which describes you?</p>
+          <div class="options" role="radiogroup" data-name="capital">
+            <button type="button" class="opt" role="radio" aria-checked="false" data-value="No funds, cannot access credit"><span class="dot"></span>I don't have those funds and cannot access credit</button>
+            <button type="button" class="opt" role="radio" aria-checked="false" data-value="No funds, can access credit"><span class="dot"></span>I don't have those funds, but I can access credit</button>
+            <button type="button" class="opt" role="radio" aria-checked="false" data-value="Has funds"><span class="dot"></span>I have those funds</button>
+          </div>
+        </div>
+
+        <!-- 5. Contact -->
+        <div class="step" data-step="contact">
+          <p class="q">Where should we send your region details?</p>
+          <label class="field"><span>Full name</span><input name="name" type="text" autocomplete="name" required></label>
+          <label class="field"><span>Email</span><input name="email" type="email" autocomplete="email" required></label>
+          <label class="field"><span>Phone</span><input name="phone" type="tel" autocomplete="tel" required></label>
+        </div>
+
+        <!-- 6. Booking -->
+        <div class="step" data-step="booking">
+          <p class="q">Last step: book your call to claim your area</p>
+          <p class="q-note">Pick a time below. We'll walk you through your region and next steps.</p>
+          <div class="booking-frame" id="booking"></div>
+        </div>
+
+        <div class="error" id="error" role="alert"></div>
+
+        <div class="nav" id="nav">
+          <button type="button" class="btn ghost" id="back">Back</button>
+          <button type="submit" class="btn" id="next">Next</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">&copy; <span id="year"></span> Scale Home Tinting. All rights reserved.</div>
+  </footer>
+
+  <script>
+    // ---- Configuration -------------------------------------------------
+    // Webhook that receives survey answers (e.g. a Make / Zapier / CRM webhook).
+    // Leave empty to skip sending.
+    const LEAD_WEBHOOK_URL = "";
+    // Booking calendar embed URL (e.g. GoHighLevel / Calendly). Name, email and
+    // phone are appended as query params so the widget can prefill them.
+    const BOOKING_EMBED_URL = "";
+    // -------------------------------------------------------------------
+
+    const STATES = ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","District of Columbia","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"];
+
+    const form = document.getElementById("survey");
+    const steps = [...form.querySelectorAll(".step")];
+    const bar = document.getElementById("bar");
+    const count = document.getElementById("count");
+    const error = document.getElementById("error");
+    const back = document.getElementById("back");
+    const next = document.getElementById("next");
+    const answers = {};
+    let current = 0;
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const stateSelect = document.getElementById("state");
+    STATES.forEach(s => stateSelect.add(new Option(s, s)));
+
+    // Option buttons behave like radios; picking one auto-advances.
+    form.querySelectorAll(".options").forEach(group => {
+      group.addEventListener("click", e => {
+        const btn = e.target.closest(".opt");
+        if (!btn) return;
+        group.querySelectorAll(".opt").forEach(o => o.setAttribute("aria-checked", o === btn ? "true" : "false"));
+        answers[group.dataset.name] = btn.dataset.value;
+        error.textContent = "";
+        setTimeout(goNext, 180);
+      });
+    });
+
+    function render() {
+      steps.forEach((s, i) => s.classList.toggle("active", i === current));
+      bar.style.width = ((current + 1) / steps.length * 100) + "%";
+      count.textContent = `Step ${current + 1} of ${steps.length}`;
+      back.style.visibility = current === 0 ? "hidden" : "visible";
+      const isLastInput = steps[current].dataset.step === "contact";
+      const isBooking = steps[current].dataset.step === "booking";
+      next.textContent = isLastInput ? "Submit & Book My Call" : "Next";
+      document.getElementById("nav").style.display = isBooking ? "none" : "flex";
+      error.textContent = "";
+    }
+
+    function validate() {
+      const step = steps[current];
+      const key = step.dataset.step;
+      if (key === "state") {
+        if (!stateSelect.value) return "Please select your state.";
+        answers.state = stateSelect.value;
+      } else if (key === "contact") {
+        const name = form.elements.name.value.trim();
+        const email = form.elements.email.value.trim();
+        const phone = form.elements.phone.value.trim();
+        if (!name) return "Please enter your name.";
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return "Please enter a valid email.";
+        if (phone.replace(/\D/g, "").length < 10) return "Please enter a valid phone number.";
+        Object.assign(answers, { name, email, phone });
+      } else if (step.querySelector(".options")) {
+        if (!answers[key]) return "Please choose an option.";
+      }
+      return "";
+    }
+
+    async function submitLead() {
+      if (!LEAD_WEBHOOK_URL) return;
+      try {
+        await fetch(LEAD_WEBHOOK_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ...answers, source: location.href, submitted_at: new Date().toISOString() })
+        });
+      } catch (e) { /* don't block booking on a webhook failure */ }
+    }
+
+    function loadBooking() {
+      const el = document.getElementById("booking");
+      if (!BOOKING_EMBED_URL) {
+        el.innerHTML = '<div class="booking-placeholder">Booking calendar goes here.<br>Set <code>BOOKING_EMBED_URL</code> in index.html.</div>';
+        return;
+      }
+      const url = new URL(BOOKING_EMBED_URL);
+      const [first, ...rest] = answers.name.split(" ");
+      url.searchParams.set("name", answers.name);
+      url.searchParams.set("first_name", first);
+      url.searchParams.set("last_name", rest.join(" "));
+      url.searchParams.set("email", answers.email);
+      url.searchParams.set("phone", answers.phone);
+      const iframe = document.createElement("iframe");
+      iframe.src = url.toString();
+      iframe.title = "Book your call";
+      iframe.loading = "lazy";
+      el.replaceChildren(iframe);
+    }
+
+    async function goNext() {
+      const msg = validate();
+      if (msg) { error.textContent = msg; return; }
+      if (steps[current].dataset.step === "contact") {
+        next.disabled = true;
+        await submitLead();
+        next.disabled = false;
+        loadBooking();
+      }
+      if (current < steps.length - 1) {
+        current++;
+        render();
+        form.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+
+    form.addEventListener("submit", e => { e.preventDefault(); goNext(); });
+    back.addEventListener("click", () => { if (current > 0) { current--; render(); } });
+
+    render();
+  </script>
+</body>
+</html>

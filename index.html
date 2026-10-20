@@ -7,6 +7,7 @@
   <meta name="description" content="Claim a region across the United States and start getting home window tinting jobs in just a few weeks.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://scalbl-crmproper.vercel.app">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <script src="https://fast.wistia.com/player.js" async></script>
@@ -99,6 +100,12 @@
 
     .step { display: none; }
     .step.active { display: block; animation: fade .25s ease; }
+    /* The calendar loads in the background from page load so it's ready the
+       moment step 6 opens; keep it rendered (not display:none) but off-screen. */
+    .step[data-step="booking"]:not(.active) {
+      display: block; position: absolute; left: -10000px; top: 0;
+      width: 560px; height: 0; overflow: hidden; visibility: hidden;
+    }
     @keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 
     .q { font-size: 21px; font-weight: 700; margin: 0 0 18px; line-height: 1.3; text-wrap: balance; }
@@ -156,7 +163,6 @@
 
     .booking-frame { min-height: 700px; border-radius: 10px; overflow: hidden; background: var(--surface-2); border: 1px dashed #333; }
     .booking-frame iframe { width: 100%; height: 700px; border: 0; display: block; }
-    .booking-placeholder { padding: 48px 20px; text-align: center; color: var(--muted); font-size: 15px; }
 
     footer { border-top: 1px solid #141414; padding: 28px 0 40px; text-align: center; color: #666; font-size: 13px; }
   </style>
@@ -249,7 +255,9 @@
         <div class="step" data-step="booking">
           <p class="q">Last step: book your call to claim your area</p>
           <p class="q-note">Pick a time below. We'll walk you through your region and next steps.</p>
-          <div class="booking-frame" id="booking"></div>
+          <div class="booking-frame" id="booking">
+            <iframe src="https://scalbl-crmproper.vercel.app/book/scale-tinting-4a2951" title="Book your call"></iframe>
+          </div>
         </div>
 
         <div class="error" id="error" role="alert"></div>
@@ -271,9 +279,8 @@
     // Webhook that receives survey answers (e.g. a Make / Zapier / CRM webhook).
     // Leave empty to skip sending.
     const LEAD_WEBHOOK_URL = "";
-    // Booking calendar embed URL. Name, email and phone are appended as query
-    // params so the widget can prefill them.
-    const BOOKING_EMBED_URL = "https://scalbl-crmproper.vercel.app/book/scale-tinting-4a2951";
+    // Booking calendar origin (the iframe itself is in the booking step markup).
+    const BOOKING_ORIGIN = "https://scalbl-crmproper.vercel.app";
     // Where to send people once the calendar reports a booking.
     const THANK_YOU_URL = "thank-you.html";
     // -------------------------------------------------------------------
@@ -339,35 +346,15 @@
       return "";
     }
 
-    async function submitLead() {
+    // Fire-and-forget so the calendar shows immediately.
+    function submitLead() {
       if (!LEAD_WEBHOOK_URL) return;
-      try {
-        await fetch(LEAD_WEBHOOK_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ ...answers, source: location.href, submitted_at: new Date().toISOString() })
-        });
-      } catch (e) { /* don't block booking on a webhook failure */ }
-    }
-
-    function loadBooking() {
-      const el = document.getElementById("booking");
-      if (!BOOKING_EMBED_URL) {
-        el.innerHTML = '<div class="booking-placeholder">Booking calendar goes here.<br>Set <code>BOOKING_EMBED_URL</code> in index.html.</div>';
-        return;
-      }
-      const url = new URL(BOOKING_EMBED_URL);
-      const [first, ...rest] = answers.name.split(" ");
-      url.searchParams.set("name", answers.name);
-      url.searchParams.set("first_name", first);
-      url.searchParams.set("last_name", rest.join(" "));
-      url.searchParams.set("email", answers.email);
-      url.searchParams.set("phone", answers.phone);
-      const iframe = document.createElement("iframe");
-      iframe.src = url.toString();
-      iframe.title = "Book your call";
-      iframe.loading = "lazy";
-      el.replaceChildren(iframe);
+      fetch(LEAD_WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...answers, source: location.href, submitted_at: new Date().toISOString() }),
+        keepalive: true
+      }).catch(() => {});
     }
 
     const META_PIXEL_ID = "1108216018730203";
@@ -375,7 +362,6 @@
     // Calendar messages: enable parent tracking, fire "Schedule" for any other
     // pixel the calendar is set up with, then forward to the thank-you page
     // (which fires "Schedule" for our pixel).
-    const BOOKING_ORIGIN = new URL(BOOKING_EMBED_URL).origin;
     let redirected = false;
     window.addEventListener("message", e => {
       if (e.origin !== BOOKING_ORIGIN || !e.data) return;
@@ -398,15 +384,12 @@
       setTimeout(() => { location.href = target.toString(); }, otherPixel ? 1200 : 0);
     });
 
-    async function goNext() {
+    function goNext() {
       const msg = validate();
       if (msg) { error.textContent = msg; return; }
       if (steps[current].dataset.step === "contact") {
-        next.disabled = true;
-        await submitLead();
+        submitLead();
         fbq("track", "Lead");
-        next.disabled = false;
-        loadBooking();
       }
       if (current < steps.length - 1) {
         current++;

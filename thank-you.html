@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>You're Booked – Scale Home Tinting</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <script src="https://fast.wistia.com/player.js" async></script>
+  <script src="https://fast.wistia.com/embed/1imyxaot1e.js" async type="module"></script>
+  <style>
+    wistia-player[media-id='1imyxaot1e']:not(:defined) {
+      background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/1imyxaot1e/swatch');
+      display: block;
+      filter: blur(5px);
+      padding-top: 56.25%;
+    }
+  </style>
+
+  <style>
+    :root {
+      --bg: #000;
+      --surface: #0e0e0e;
+      --surface-2: #161616;
+      --border: #262626;
+      --text: #fff;
+      --muted: #a3a3a3;
+      --accent: #f5c518;
+      --accent-ink: #000;
+      --radius: 14px;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap { max-width: 880px; margin: 0 auto; padding: 0 16px; }
+    .narrow { max-width: 720px; }
+
+    /* Hero */
+    header.hero { padding: 56px 0 24px; text-align: center; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid #3a3200; background: #141100;
+      padding: 6px 14px; border-radius: 999px; margin-bottom: 22px;
+    }
+    h1 {
+      font-size: clamp(32px, 6vw, 54px);
+      line-height: 1.05; font-weight: 900; letter-spacing: -0.025em;
+      margin: 0 0 18px; text-wrap: balance;
+    }
+    h1 .hl { color: var(--accent); }
+    .sub {
+      font-size: clamp(17px, 2.4vw, 20px);
+      color: var(--muted); max-width: 640px; margin: 0 auto; text-wrap: pretty;
+    }
+    .sub strong { color: var(--text); }
+
+    /* Proof */
+    section.proof { padding: 24px 0 56px; }
+    .proof-head { text-align: center; margin-bottom: 24px; }
+    .proof-head h2 { font-size: clamp(22px, 3.6vw, 30px); font-weight: 800; letter-spacing: -0.02em; margin: 0 0 6px; }
+    .proof-head p { color: var(--muted); margin: 0; }
+    .proof-list { display: grid; gap: 16px; }
+    .proof-list figure {
+      margin: 0; border-radius: 10px; overflow: hidden;
+      border: 1px solid var(--border); background: var(--surface);
+    }
+    .proof-list img { display: block; width: 100%; height: auto; }
+
+    .divider { border: 0; border-top: 1px solid #1a1a1a; margin: 0 auto; max-width: 880px; }
+
+    /* Resources */
+    section.resources { padding: 64px 0 40px; }
+    .res-head { text-align: center; margin-bottom: 36px; }
+    .res-head h2 { font-size: clamp(26px, 4.4vw, 36px); font-weight: 800; letter-spacing: -0.02em; margin: 0 0 10px; }
+    .res-head p { color: var(--muted); margin: 0 auto; max-width: 600px; text-wrap: pretty; }
+    .res-head .done { color: var(--accent); font-weight: 800; }
+
+    .item { margin-bottom: 44px; }
+    .item h3 { font-size: 19px; font-weight: 700; margin: 0 0 12px; }
+    .item h3 .n { color: var(--accent); margin-right: 6px; }
+
+    .frame {
+      border-radius: var(--radius); overflow: hidden;
+      border: 1px solid var(--border); background: #050505;
+    }
+    .frame.glow { box-shadow: 0 0 0 1px #000, 0 30px 80px -20px rgba(245,197,24,.18); }
+
+    .grid-2 { display: grid; gap: 16px; }
+    @media (min-width: 640px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
+    .cap { font-size: 14px; color: var(--muted); margin: 0 0 8px; }
+
+    .slides { position: relative; padding-top: 59.27%; }
+    .slides iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+    .placeholder {
+      aspect-ratio: 16 / 9; display: grid; place-items: center; text-align: center;
+      padding: 20px; color: var(--muted); font-size: 14px;
+      background: var(--surface-2); border: 1px dashed #333; border-radius: var(--radius);
+    }
+    .placeholder.tall { aspect-ratio: 4 / 3; }
+
+    footer { border-top: 1px solid #141414; padding: 28px 0 40px; text-align: center; color: #666; font-size: 13px; }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="wrap">
+      <div class="eyebrow">&#10003; Your call is booked</div>
+      <h1>You're In. <span class="hl">Here's What Happens Next.</span></h1>
+      <p class="sub">Check your texts and email for your call confirmation. Before we talk, see what owners in our network are already closing <strong>from the jobs we send them</strong>.</p>
+    </div>
+  </header>
+
+  <!-- Proof: drop screenshots into images/ as proof-1.jpg, proof-2.jpg, ... -->
+  <section class="proof">
+    <div class="wrap narrow">
+      <div class="proof-head">
+        <h2>Real Results From Our Owners</h2>
+        <p>Straight from our team chats.</p>
+      </div>
+      <div class="proof-list" id="proof"></div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section class="resources">
+    <div class="wrap narrow">
+      <div class="res-head">
+        <h2>Your Pre-Call Resources</h2>
+        <p>Go through everything below before your call &mdash; it's mandatory prep. When you're done, reply <span class="done">DONE</span> to the text we sent you.</p>
+      </div>
+
+      <div class="item">
+        <h3><span class="n">1.</span>Watch this first &mdash; a message from our founder</h3>
+        <div class="frame glow">
+          <wistia-player media-id="1imyxaot1e" aspect="1.7777777777777777"></wistia-player>
+        </div>
+      </div>
+
+      <div class="item">
+        <h3><span class="n">2.</span>See the product in action</h3>
+        <div class="grid-2" id="product"></div>
+      </div>
+
+      <div class="item">
+        <h3><span class="n">3.</span>Our warranty</h3>
+        <div id="warranty"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">Questions before your call? Just reply to the text or email from your rep.<br><br>&copy; <span id="year"></span> Scale Home Tinting. All rights reserved.</div>
+  </footer>
+
+  <script>
+    // ---- Configuration -------------------------------------------------
+    // Proof screenshots (paths relative to this page).
+    const PROOF_IMAGES = ["images/proof-1.jpg", "images/proof-2.jpg", "images/proof-3.jpg", "images/proof-4.jpg"];
+    // "Product in action" videos: set mediaId to a Wistia media ID.
+    const PRODUCT_VIDEOS = [
+      { caption: "Prepping the window", mediaId: "" },
+      { caption: "Installing the film", mediaId: "" }
+    ];
+    // Warranty: Google Slides "Publish to web" embed URL.
+    const WARRANTY_SLIDES_URL = "";
+    // -------------------------------------------------------------------
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    function placeholder(text, cls = "") {
+      const d = document.createElement("div");
+      d.className = "placeholder " + cls;
+      d.textContent = text;
+      return d;
+    }
+
+    // Proof screenshots; a missing file falls back to a placeholder.
+    const proof = document.getElementById("proof");
+    PROOF_IMAGES.forEach((src, i) => {
+      const fig = document.createElement("figure");
+      const img = new Image();
+      img.alt = `Owner result screenshot ${i + 1}`;
+      img.loading = "lazy";
+      img.onerror = () => fig.replaceWith(placeholder(`Add screenshot: ${src}`, "tall"));
+      img.src = src;
+      fig.appendChild(img);
+      proof.appendChild(fig);
+    });
+
+    const product = document.getElementById("product");
+    PRODUCT_VIDEOS.forEach(v => {
+      const box = document.createElement("div");
+      const cap = document.createElement("p");
+      cap.className = "cap";
+      cap.textContent = v.caption;
+      box.appendChild(cap);
+      if (v.mediaId) {
+        const s = document.createElement("script");
+        s.src = `https://fast.wistia.com/embed/${v.mediaId}.js`;
+        s.type = "module";
+        s.async = true;
+        document.head.appendChild(s);
+        const frame = document.createElement("div");
+        frame.className = "frame";
+        frame.innerHTML = `<wistia-player media-id="${v.mediaId}" aspect="1.7777777777777777"></wistia-player>`;
+        box.appendChild(frame);
+      } else {
+        box.appendChild(placeholder("Add a Wistia media ID in PRODUCT_VIDEOS"));
+      }
+      product.appendChild(box);
+    });
+
+    const warranty = document.getElementById("warranty");
+    if (WARRANTY_SLIDES_URL) {
+      warranty.className = "frame slides";
+      warranty.innerHTML = `<iframe src="${WARRANTY_SLIDES_URL}" allowfullscreen title="Warranty"></iframe>`;
+    } else {
+      warranty.appendChild(placeholder("Add your Google Slides embed URL in WARRANTY_SLIDES_URL"));
+    }
+  </script>
+</body>
+</html>

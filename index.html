@@ -357,6 +357,12 @@
       }).catch(() => {});
     }
 
+    // Fill the preloaded calendar's booking form with the survey's contact details.
+    function sendPrefill(target) {
+      if (!answers.email) return;
+      target.postMessage({ type: "scalbl:prefill", name: answers.name, email: answers.email, phone: answers.phone }, BOOKING_ORIGIN);
+    }
+
     const META_PIXEL_ID = "1108216018730203";
 
     // Calendar messages: enable parent tracking, fire "Schedule" for any other
@@ -368,6 +374,7 @@
       const d = e.data;
       if (d.type === "scalbl:ready") {
         e.source.postMessage({ type: "scalbl:parent-tracking" }, BOOKING_ORIGIN);
+        sendPrefill(e.source); // in case they finished step 5 before the calendar loaded
         return;
       }
       if (d.type !== "scalbl:booked" || redirected) return;
@@ -390,6 +397,7 @@
       if (steps[current].dataset.step === "contact") {
         submitLead();
         fbq("track", "Lead");
+        sendPrefill(document.querySelector("#booking iframe").contentWindow);
       }
       if (current < steps.length - 1) {
         current++;
